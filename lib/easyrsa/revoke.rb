@@ -79,7 +79,8 @@ module EasyRSA
       @crl.version = 1
 
     # Update the CRL issuer
-      @crl.issuer = EasyRSA::gen_issuer
+      # @crl.issuer = EasyRSA::gen_issuer
+      @crl.issuer = OpenSSL::X509::Name.parse("CN=Easy-RSA CA")
 
     # Sign the CRL
       @updated_crl = @crl.sign(cakey, OpenSSL::Digest::SHA256.new)
